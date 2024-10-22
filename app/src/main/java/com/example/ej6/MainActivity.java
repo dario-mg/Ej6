@@ -75,25 +75,23 @@ public class MainActivity extends AppCompatActivity {
         clearButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                currentInput.setLength(0); // Limpiar el input
-                display.setText(""); // Limpiar el texto en la pantalla
+                currentInput.setLength(0);
+                display.setText("");
             }
         });
     }
 
     // Función recursiva para calcular una expresión simple de suma
     private String calculate(String input) {
-        // Si no hay "+", devolver el número directamente
         if (!input.contains("+")) {
             try {
                 return String.valueOf(Integer.parseInt(input)); // Convertir el número y devolverlo como string
             } catch (NumberFormatException e) {
-                return "-1"; // Devolver -1 si hay un error en la conversión
+                return "-1";
             }
         } else {
-            // Si hay "+", dividir la cadena en dos partes
+
             String[] parts = input.split("\\+", 2);
-            // Recursivamente calcular cada parte y sumarlas
             return String.valueOf(Integer.parseInt(calculate(parts[0])) + Integer.parseInt(calculate(parts[1])));
         }
     }
